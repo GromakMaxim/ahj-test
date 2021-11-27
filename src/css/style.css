@@ -1,28 +1,85 @@
-.field {
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+.validator {
   display: flex;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
 }
 
-.cell {
-  display: flex;
-  width: 100px;
-  height: 100px;
-  border: 1px double black;
+.cards {
+  list-style: none;
 }
 
-.cell {
-  cursor: crosshair;
+.card.visa {
+  background-image: url(https://www.validcreditcardnumber.com/static/img/card-visa.gif);
 }
 
-.score, .miss {
-  font-family: "Arial Black", serif;
-  font-size: 30px;
+.card.master {
+  background-image: url(https://www.validcreditcardnumber.com/static/img/card-mastercard.gif);
 }
 
-.cell.goblin {
-  background: url('../img/goblin.png') center center;
+.card.amex {
+  background-image: url(https://www.validcreditcardnumber.com/static/img/card-amex.gif);
+}
+
+.card.discover {
+  background-image: url(https://www.validcreditcardnumber.com/static/img/card-discover.gif);
+}
+
+.card.jcb {
+  background-image: url(https://www.validcreditcardnumber.com/static/img/card-jcb.gif);
+}
+
+.card.diners_club {
+  background-image: url(https://www.validcreditcardnumber.com/static/img/card-diners.gif);
+}
+
+.card.mir {
+  background-image: url(../img/mir.png);
+}
+
+.card {
+  float: left;
+  width: 39px;
+  height: 25px;
+  text-indent: -9999px;
+  background-position: 0 0;
+  margin-right: 2px;
+}
+
+ul {
+  padding: 0;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
