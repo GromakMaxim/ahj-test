@@ -1,6 +1,4 @@
+import UIController from './UIController';
 
-export default class App {
-  constructor() {
-
-  }
-}
+new UIController();
+console.log(new Date());

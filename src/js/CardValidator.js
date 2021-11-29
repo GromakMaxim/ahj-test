@@ -1,6 +1,6 @@
 export default class CardValidator {
   isNumbers(cardnumber) {
-    const reg = '^[0-9]+$'; // only numbers allowed
+    const reg = new RegExp('^[0-9]+$'); // only numbers allowed
 
     if (!cardnumber.match(reg)) {
       return false;

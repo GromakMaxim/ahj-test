@@ -10,6 +10,16 @@
       "error",
       "LabeledStatement",
       "WithStatement"
-    ]
+    ],
+    "prefer-destructuring": "off",
+    "no-plusplus": "off",
+    "no-alert": "off",
+    "no-new": "off",
+    "no-param-reassign": "off",
+    "no-console": "off",
+    "no-cond-assign": "off",
+    "class-methods-use-this": "off"
+
+
   }
 }
