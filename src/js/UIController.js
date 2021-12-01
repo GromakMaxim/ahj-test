@@ -4,7 +4,6 @@ export default class UIController {
   constructor() {
     this.cardvalidator = new CardValidator();
     this.addValidateButtonListener();
-    console.log('UI Controller');
   }
 
   addValidateButtonListener() {
@@ -12,13 +11,13 @@ export default class UIController {
 
     button.addEventListener('click', (event) => {
       event.preventDefault();
-      console.log('click');
-      const input = document.getElementById('card_number').value.trim();
-      console.log(input);
-      if (this.cardvalidator.isNumbers(input) && this.cardvalidator.luhnAlgorithm(input)) {
-        const paymentSystem = this.cardvalidator.definePaymentSystem(input);
-        this.showPaymentSystem(paymentSystem);
-      }
+
+      const input = document.getElementById('card_number')
+        .value
+        .trim();
+
+      const paymentSystem = this.cardvalidator.definePaymentSystem(input);
+      this.showPaymentSystem(paymentSystem);
     });
   }
 

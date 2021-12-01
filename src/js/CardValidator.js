@@ -1,23 +1,25 @@
 export default class CardValidator {
   isNumbers(cardnumber) {
     const reg = new RegExp('^[0-9]+$'); // only numbers allowed
-
-    if (!cardnumber.match(reg)) {
-      return false;
-    }
-
-    return true;
+    return cardnumber.match(reg);
   }
 
   luhnAlgorithm(value) {
-    value = value.replace(/\D/g, '');
+    // accept only digits, dashes or spaces
+    if (/[^0-9-\s]+/.test(value)) return false;
+
+    // The Luhn Algorithm. It's so pretty.
     let nCheck = 0;
+    let nDigit = 0;
     let bEven = false;
+    value = value.replace(/\D/g, '');
 
     for (let n = value.length - 1; n >= 0; n--) {
-      let nDigit = parseInt(value.charAt(n), 10);
-      if (bEven && (nDigit *= 2) > 9) {
-        nDigit -= 9;
+      const cDigit = value.charAt(n);
+      nDigit = parseInt(cDigit, 10);
+
+      if (bEven) {
+        if ((nDigit *= 2) > 9) nDigit -= 9;
       }
 
       nCheck += nDigit;
@@ -28,8 +30,9 @@ export default class CardValidator {
   }
 
   definePaymentSystem(cardnumber) {
-    if (cardnumber === null || cardnumber === undefined || cardnumber.length < 9) {
-      throw new Error('invalid card number');
+    if (cardnumber === null || cardnumber === undefined || cardnumber.length < 9
+      || !this.isNumbers(cardnumber) || !this.luhnAlgorithm(cardnumber)) {
+      return `unknown card number ${cardnumber}`;
     }
 
     if (cardnumber.substr(0, 2) === '35') return 'jcb';
@@ -45,7 +48,7 @@ export default class CardValidator {
       case '6':
         return 'discover';
       default:
-        return '';
+        return `unknown card number ${cardnumber}`;
     }
   }
 }
