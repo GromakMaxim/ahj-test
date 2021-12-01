@@ -2,11 +2,12 @@ import CardValidator from '../CardValidator';
 
 // positive
 
-test('check legal card number', () => {
+test('111check legal card number', () => {
   const validator = new CardValidator();
   const testcase = '371449635398431';
 
   const actual = validator.isNumbers(testcase);
+  console.log(actual);
   const expected = true;
 
   expect(actual)
@@ -15,7 +16,7 @@ test('check legal card number', () => {
 
 test('check luhn(given correct cardnumber)', () => {
   const validator = new CardValidator();
-  const testcase = '371449635398431';
+  const testcase = '375118435530560';
 
   const actual = validator.luhnAlgorithm(testcase);
   const expected = true;
@@ -57,6 +58,39 @@ test('check a payment system(given correct cardnumber, expect discover)', () => 
     .toEqual(expected);
 });
 
+test('check a payment system(given correct cardnumber, expect jcb)', () => {
+  const validator = new CardValidator();
+  const testcase = '3530111333300000';
+
+  const actual = validator.definePaymentSystem(testcase);
+  const expected = 'jcb';
+
+  expect(actual)
+    .toEqual(expected);
+});
+
+test('check a payment system(given correct cardnumber, expect diners)', () => {
+  const validator = new CardValidator();
+  const testcase = '30569309025904';
+
+  const actual = validator.definePaymentSystem(testcase);
+  const expected = 'diners';
+
+  expect(actual)
+    .toEqual(expected);
+});
+
+test('check a payment system(given correct cardnumber, expect amex)', () => {
+  const validator = new CardValidator();
+  const testcase = '375118435530560';
+
+  const actual = validator.definePaymentSystem(testcase);
+  const expected = 'amex';
+
+  expect(actual)
+    .toEqual(expected);
+});
+
 // negative
 
 test('check a payment system(given number with letters, expect error msg)', () => {
@@ -65,6 +99,17 @@ test('check a payment system(given number with letters, expect error msg)', () =
 
   const actual = validator.definePaymentSystem(testcase);
   const expected = `unknown card number ${testcase}`;
+
+  expect(actual)
+    .toEqual(expected);
+});
+
+test('check a payment system(given number with letters, expect error msg)', () => {
+  const validator = new CardValidator();
+  const testcase = '67r44q635_9pp31';
+
+  const actual = validator.isNumbers(testcase);
+  const expected = false;
 
   expect(actual)
     .toEqual(expected);

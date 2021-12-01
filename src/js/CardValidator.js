@@ -1,7 +1,8 @@
 export default class CardValidator {
   isNumbers(cardnumber) {
     const reg = new RegExp('^[0-9]+$'); // only numbers allowed
-    return cardnumber.match(reg);
+    if (cardnumber.match(reg)) return true;
+    return false;
   }
 
   luhnAlgorithm(value) {
@@ -36,6 +37,8 @@ export default class CardValidator {
     }
 
     if (cardnumber.substr(0, 2) === '35') return 'jcb';
+    if (cardnumber.substr(0, 2) === '30') return 'diners';
+
     switch (cardnumber.substr(0, 1)) {
       case '2':
         return 'mir';
